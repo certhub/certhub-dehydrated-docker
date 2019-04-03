@@ -72,7 +72,9 @@ COPY --from=certhub-build /dist /usr
 COPY --from=dehydrated-build /dist /usr
 COPY --from=dehydrated-build /etc-dist /etc
 
-RUN addgroup -S certhub && adduser -S certhub -G certhub
+RUN addgroup -S certhub && adduser -S certhub -G certhub && \
+    mkdir /etc/dehydrated/accounts && \
+    chown -R certhub.certhub /etc/dehydrated
 
 USER certhub
 
