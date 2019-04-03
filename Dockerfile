@@ -65,7 +65,7 @@ RUN chmod 0755 /dist/bin/dehydrated && chmod 0644 /etc-dist/dehydrated/config
 #
 FROM base
 
-RUN apk add --no-cache bash ca-certificates curl git openssh-client openssl tini
+RUN apk add --no-cache bash ca-certificates curl git openssh-client openssl python3 tini
 
 COPY --from=gitgau-build /dist /usr
 COPY --from=certhub-build /dist /usr
