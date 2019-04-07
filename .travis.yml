@@ -1,0 +1,17 @@
+language: bash
+servics: docker
+
+env:
+  global:
+    - IMAGE_LATEST: certhub/certhub:rolling-dehydrated
+    - DOCKER_USERNAME: certhubci
+    - secure: "BwfhLkM9l5Iu9/wdVV4lkB5eDemrErplGOOKRE3erx+KFcKOq0CO6IPPui8gEdeGYIp/KWC9th751Gy5vpkIjP9b+kyV15QAX45Eex4AvQK/OvU25zd/XL0xc7RVZzseA3iUgLKsfCrgt+Eh4vomjyVDGkoWvg7HUj1EOrXYCMk1ZO1wyPhfzcBSvbcFpTQU1wMB2I3c3sjJbImQg+QYrOdU5jzCUjSUleoPvR7M/fp0GNnl6Iw06a04/m8IKJPargzYwhcExTnBDR9qJd2sIJ59ByWZdJVzmvxtKRZVcuOg0Hb4K1EVY+YpXd4R8WdDLF90VxIMFm5MfZy47/9/j5KDG9yWf4sjWh6o6cCAwg8GcivSpCoDXGv+fFap224HS+8qvR/Gna3lLM2GO59bi3Kyv0M9kUT8qrWON6qBAgUPnSjSF6qyh+OhWxwe5eePoq8NExKSYe0Ab0668KpQ6o5GfRaTOYHBk6lucu3ODEieroADQtmKR+D2L6TVAsJn0nEw7KlB624g2Js6FUsAJTrvPMEcnqUij5Isds/9wLzqmmJNs5HM8SnrYPT3rRRfe6sIsqo0SrWI9W9H2CGEXKE0yR82UM0ZFEb2h4Aova6bCSfnVPFeShURysf5t8rj+1ZLepe6WQlfDw3A7ljhHUXiQFGkgpCXUyHTTTnORZ8="
+
+before_script:
+  - docker --version
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+script:
+  - docker pull $IMAGE_LATEST || true
+  - docker build --cache-from $IMAGE_LATEST --tag $IMAGE_LATEST .
+  - docker push $IMAGE_LATEST
