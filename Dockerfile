@@ -44,7 +44,7 @@ RUN apk add --no-cache alpine-sdk python3-dev libffi-dev openssl-dev
 
 RUN mkdir /src /dist /etc-dist
 
-ARG lexicon_ref=v3.2.2
+ARG lexicon_ref=v3.2.3
 ENV lexicon_ref ${lexicon_ref}
 
 ADD "https://codeload.github.com/AnalogJ/lexicon/tar.gz/${lexicon_ref}" /src/lexicon-src.tar.gz
