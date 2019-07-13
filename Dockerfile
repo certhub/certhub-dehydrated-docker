@@ -53,7 +53,7 @@ RUN tar -o -C /src -xf /src/lexicon-src.tar.gz
 ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 RUN pip3 install --install-option="--prefix=/dist" /src/lexicon-*/
 
-ARG dehydrated_version=v0.6.2
+ARG dehydrated_version=v0.6.5
 ENV dehydrated_version ${dehydrated_version}
 
 ADD "https://raw.githubusercontent.com/lukas2511/dehydrated/$dehydrated_version/dehydrated" /dist/bin/dehydrated
