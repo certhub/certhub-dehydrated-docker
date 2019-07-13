@@ -16,7 +16,7 @@ cat <<EOF > "${CONFIG_DEHYDRATED_CONF_PATH}"
 CA="https://acme-staging-v02.api.letsencrypt.org/directory"
 CHALLENGETYPE="dns-01"
 BASEDIR=/etc/dehydrated
-HOOK=/usr/local/lib/certhub/dehydrated-hooks/lexicon-auth
+HOOK=/usr/lib/certhub/dehydrated-hooks/lexicon-auth
 CURL_OPTS="-x tor:9050"
 IP_VERSION="4"
 EOF
