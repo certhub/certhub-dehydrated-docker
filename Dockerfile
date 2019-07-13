@@ -61,6 +61,27 @@ ADD "https://raw.githubusercontent.com/lukas2511/dehydrated/$dehydrated_version/
 RUN chmod 0755 /dist/bin/dehydrated && chmod 0644 /etc-dist/dehydrated/config
 
 #
+# docs stage
+#
+FROM base as docs-build
+
+RUN mkdir /dist /dist-etc
+
+ARG build_log_url
+ENV build_log_url ${build_log_url}
+
+ARG build_log_label
+ENV build_log_label ${build_log_label}
+
+COPY . /src
+
+RUN if [ -n "${build_log_url}" ] && [ -n "${build_log_label}" ]; then \
+    sed -i "s|.*Build Status.*$|Build Log: [${build_log_label}](${build_log_url})|g" /src/README.md; \
+    fi
+RUN install -m 0644 -D /src/README.md /dist-etc/motd && \
+    install -m 0755 -D /src/docker-entry.d/00-motd /dist/lib/git-gau/docker-entry.d/00-motd
+
+#
 # runtime image stage
 #
 FROM base
@@ -71,6 +92,8 @@ COPY --from=gitgau-build /dist /usr
 COPY --from=certhub-build /dist /usr
 COPY --from=dehydrated-build /dist /usr
 COPY --from=dehydrated-build /etc-dist /etc
+COPY --from=docs-build /dist /usr
+COPY --from=docs-build /dist-etc /etc
 
 RUN addgroup -S certhub && adduser -S certhub -G certhub && \
     mkdir /etc/dehydrated/accounts && \
