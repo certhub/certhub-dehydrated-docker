@@ -20,7 +20,8 @@ services:
     tor:
         build:
             context: ./tor
-        expose: 9050
+        expose:
+          - "9050"
 
 volumes:
     config:
