@@ -1,0 +1,39 @@
+version: "3.4"
+
+services:
+    sut:
+        command: /test/test-dehydrated.sh
+        environment:
+          CERTHUB_DEHYDRATED_CONFIG: >-
+            dehydrated.conf
+          CERTHUB_DEHYDRATED_ARGS: ""
+          CERTHUB_LEXICON_GLOBAL_ARGS: >-
+            --delegated ci.certhub.io
+          CERTHUB_LEXICON_PROVIDER: >-
+            digitalocean
+          LEXICON_DIGITALOCEAN_TOKEN: >-
+            ${PRIVATE_DIGITALOCEAN_TOKEN}
+          # Account setup via certhub-docker-entry script
+          # https://certhub.readthedocs.io/en/latest/certhub-docker-entry.8.html#environment-dehydrated
+          CERTHUB_DEHYDRATED_ACCOUNT_KEY: >-
+            ${PRIVATE_DEHYDRATED_ACCOUNT_KEY}
+          CERTHUB_DEHYDRATED_ACCOUNT_REGR: |
+            {
+              "key": {
+                "kty": "RSA",
+                "n": "psk9ov-zqhCveTC_rYrCxCDNfYF3NT6_15VlpnHx3tl0BmHwWOypSDeUWG30lS2v492C3QBUes1XBsMNOShhdTZTuiBYmOJUMWPOPwEUHwPBV2ctyg5X94S6NoMVGgu80MkUJyKLSHPbhEfUvK4Jx15nwJh0UCYUP5_Z63sCaWAETJjBaPOxt7XRatQt2_JtdKx6nl1U_48o6phOiyWShQ99DXiUgqFyOnaf4ZBTDDJ7OLRBnWXag9alAkZeIwExHMWL2wn3NO4k55iafXI54srbAhIcAj-QfQB9SzUZpY9GoPRkOe_-U0ESWIZ-0l3quX9DQStXAnO9Ei9FpCN8Y3sXbx9fJgXMGk514l3knbxTq1NZ9NRFQlafmZm19Hxwz7L2RQVXDigiGXb5OSI_vJz6SKjpkOQbCD5WDoXC9HEMX-bG959uKiNDAlgx6V2LJE9T-GV8CmouHynEd3RVunJ-pWVU4XYVVHi_wjuB59Ubrwi_tMT3IBUQym6FukIvHBbwqKOZk-bkgJ-uvFVtXCAyJU9qDteP3UNUQ9jUv4oSz03yC5Av88QzqTu2dGDNuTrhLYBniH-nq7gMOL-gQ6GXJz6mY4fjFwb5Z5vyeMdm2lyi_nY0dTJo1noG0grcKVZ-1_asq6LM0fRl52LbjXMtxO4CtaIOmq3DEEUPnJU",
+                "e": "AQAB"
+              },
+              "contact": [],
+              "createdAt": "2019-07-13T17:59:26.458931603Z",
+              "status": "valid"
+            }
+          CERTHUB_DEHYDRATED_ACCOUNT_ID: |
+            {"id": "10028540"}
+          CERTHUB_DEHYDRATED_ACCOUNT_SERVER: >-
+            https://acme-staging-v02.api.letsencrypt.org/directory
+
+    config:
+        command: /test/config-setup-dehydrated.sh
+        environment:
+          CONFIG_DEHYDRATED_CONF_PATH: dehydrated.conf
