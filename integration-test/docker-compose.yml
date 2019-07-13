@@ -5,6 +5,7 @@ services:
         working_dir: /etc/certhub
         depends_on:
           - config
+          - tor
         volumes:
           - config:/etc/certhub
           - ./test:/test
