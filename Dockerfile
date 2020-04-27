@@ -40,7 +40,7 @@ RUN make -C /src/certhub-* prefix=/dist install-bin
 #
 FROM base as dehydrated-build
 
-RUN apk add --no-cache alpine-sdk python3-dev libffi-dev openssl-dev
+RUN apk add --no-cache alpine-sdk python3-dev py3-pip libffi-dev openssl-dev
 
 RUN mkdir /src /dist /etc-dist
 
@@ -51,7 +51,7 @@ ADD "https://codeload.github.com/AnalogJ/lexicon/tar.gz/${lexicon_ref}" /src/lex
 RUN tar -o -C /src -xf /src/lexicon-src.tar.gz
 
 ENV PIP_DISABLE_PIP_VERSION_CHECK 1
-RUN pip3 install --install-option="--prefix=/dist" /src/lexicon-*/
+RUN pip3 install --prefix=/dist /src/lexicon-*/
 
 ARG dehydrated_version=v0.6.5
 ENV dehydrated_version ${dehydrated_version}
@@ -86,7 +86,7 @@ RUN install -m 0644 -D /src/README.md /dist-etc/motd && \
 #
 FROM base
 
-RUN apk add --no-cache bash ca-certificates curl git openssh-client openssl python3 tini
+RUN apk add --no-cache bash ca-certificates curl git openssh-client openssl python3 py3-pip tini
 
 COPY --from=gitgau-build /dist /usr
 COPY --from=certhub-build /dist /usr
