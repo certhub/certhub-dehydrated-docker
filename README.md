@@ -26,7 +26,7 @@ Official Certhub/Dehydrated Docker Image
 Manifest
 --------
 
-* alpine: 3.12.0
+* alpine: 3.12.1
 * certhub: v1.0.0-beta9
 * dehydrated: v0.6.5
 * dns-lexicon: v3.4.3
