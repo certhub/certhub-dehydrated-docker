@@ -59,8 +59,8 @@ RUN pip3 install --prefix=/dist /src/lexicon-*/dist/dns_lexicon-*-py3-none-any.w
 ARG dehydrated_version=master
 ENV dehydrated_version ${dehydrated_version}
 
-ADD "https://raw.githubusercontent.com/lukas2511/dehydrated/$dehydrated_version/dehydrated" /dist/bin/dehydrated
-ADD "https://raw.githubusercontent.com/lukas2511/dehydrated/$dehydrated_version/docs/examples/config" /etc-dist/dehydrated/config
+ADD "https://raw.githubusercontent.com/dehydrated-io/dehydrated/$dehydrated_version/dehydrated" /dist/bin/dehydrated
+ADD "https://raw.githubusercontent.com/dehydrated-io/dehydrated/$dehydrated_version/docs/examples/config" /etc-dist/dehydrated/config
 RUN chmod 0755 /dist/bin/dehydrated && chmod 0644 /etc-dist/dehydrated/config
 
 #
