@@ -56,7 +56,7 @@ RUN (cd /src/lexicon-* && ~/.poetry/bin/poetry build)
 ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 RUN pip3 install --prefix=/dist /src/lexicon-*/dist/dns_lexicon-*-py3-none-any.whl
 
-ARG dehydrated_version=v0.6.5
+ARG dehydrated_version=v0.7.0
 ENV dehydrated_version ${dehydrated_version}
 
 ADD "https://raw.githubusercontent.com/dehydrated-io/dehydrated/$dehydrated_version/dehydrated" /dist/bin/dehydrated
