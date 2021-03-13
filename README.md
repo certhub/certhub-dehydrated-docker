@@ -26,7 +26,7 @@ Official Certhub/Dehydrated Docker Image
 Manifest
 --------
 
-* alpine: edge
+* alpine: 3.13
 * certhub: develop
 * dehydrated: master
 * dns-lexicon: master
