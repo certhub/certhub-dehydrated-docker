@@ -44,7 +44,7 @@ RUN apk add --no-cache ca-certificates curl python3 py3-cffi py3-cryptography py
 
 RUN mkdir /src /dist /etc-dist
 
-ARG lexicon_ref=v3.7.0
+ARG lexicon_ref=v3.8.2
 ENV lexicon_ref ${lexicon_ref}
 
 ADD "https://codeload.github.com/AnalogJ/lexicon/tar.gz/${lexicon_ref}" /src/lexicon-src.tar.gz
@@ -56,7 +56,7 @@ RUN (cd /src/lexicon-* && ~/.poetry/bin/poetry build)
 ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 RUN pip3 install --prefix=/dist /src/lexicon-*/dist/dns_lexicon-*-py3-none-any.whl
 
-ARG dehydrated_version=v0.8.2
+ARG dehydrated_version=v0.7.0
 ENV dehydrated_version ${dehydrated_version}
 
 ADD "https://raw.githubusercontent.com/dehydrated-io/dehydrated/$dehydrated_version/dehydrated" /dist/bin/dehydrated
