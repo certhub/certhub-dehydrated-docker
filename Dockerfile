@@ -44,7 +44,7 @@ RUN apk add --no-cache ca-certificates curl python3 py3-cffi py3-cryptography py
 
 RUN mkdir /src /dist /etc-dist
 
-ARG lexicon_ref=v3.8.2
+ARG lexicon_ref=v3.9.4
 ENV lexicon_ref ${lexicon_ref}
 
 ADD "https://codeload.github.com/AnalogJ/lexicon/tar.gz/${lexicon_ref}" /src/lexicon-src.tar.gz
