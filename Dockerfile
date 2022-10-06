@@ -1,4 +1,4 @@
-ARG alpine_version=3.15.4
+ARG alpine_version=3.16.2
 
 FROM alpine:${alpine_version} as base
 RUN apk update && apk upgrade
@@ -40,18 +40,17 @@ RUN make -C /src/certhub-* prefix=/dist install-bin
 #
 FROM base as dehydrated-build
 
-RUN apk add --no-cache ca-certificates curl python3 py3-cffi py3-cryptography py3-openssl py3-pip py3-yaml py3-lxml
+RUN apk add --no-cache ca-certificates poetry python3 py3-cffi py3-cryptography py3-filelock py3-openssl py3-pip py3-requests py3-yaml py3-lxml
 
 RUN mkdir /src /dist /etc-dist
 
-ARG lexicon_ref=v3.9.4
+ARG lexicon_ref=v3.11.4
 ENV lexicon_ref ${lexicon_ref}
 
 ADD "https://codeload.github.com/AnalogJ/lexicon/tar.gz/${lexicon_ref}" /src/lexicon-src.tar.gz
 RUN tar -o -C /src -xf /src/lexicon-src.tar.gz
 
-RUN curl -fsSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
-RUN (cd /src/lexicon-* && ~/.poetry/bin/poetry build)
+RUN (cd /src/lexicon-* && poetry build)
 
 ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 RUN pip3 install --prefix=/dist /src/lexicon-*/dist/dns_lexicon-*-py3-none-any.whl
@@ -89,7 +88,7 @@ RUN install -m 0644 -D /src/README.md /dist-etc/motd && \
 #
 FROM base
 
-RUN apk add --no-cache bash ca-certificates curl git openssh-client openssl python3 py3-cffi py3-cryptography py3-openssl py3-pip py3-yaml py3-lxml tini tzdata
+RUN apk add --no-cache bash ca-certificates curl git openssh-client openssl python3 py3-cffi py3-cryptography py3-filelock py3-openssl py3-pip py3-requests py3-yaml py3-lxml tini tzdata
 
 COPY --from=gitgau-build /dist /usr
 COPY --from=certhub-build /dist /usr
