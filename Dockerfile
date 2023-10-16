@@ -1,4 +1,4 @@
-ARG alpine_version=3.18.4
+ARG alpine_version=edge
 
 FROM alpine:${alpine_version} as base
 RUN apk update && apk upgrade
@@ -12,7 +12,7 @@ RUN apk add --no-cache make
 
 RUN mkdir /src /dist
 
-ARG gitgau_ref=v1.1.0
+ARG gitgau_ref=develop
 ENV gitgau_ref ${gitgau_ref}
 
 ADD "https://codeload.github.com/znerol/git-gau/tar.gz/${gitgau_ref}" /src/git-gau-src.tar.gz
@@ -28,7 +28,7 @@ RUN apk add --no-cache make
 
 RUN mkdir /src /dist
 
-ARG certhub_ref=v1.0.0-beta9
+ARG certhub_ref=develop
 ENV certhub_ref ${certhub_ref}
 
 ADD "https://codeload.github.com/certhub/certhub/tar.gz/${certhub_ref}" /src/certhub-src.tar.gz
@@ -44,7 +44,7 @@ RUN apk add --no-cache ca-certificates poetry python3 py3-beautifulsoup4 py3-cff
 
 RUN mkdir /src /dist /etc-dist
 
-ARG lexicon_ref=v3.15.1
+ARG lexicon_ref=master
 ENV lexicon_ref ${lexicon_ref}
 
 ADD "https://codeload.github.com/AnalogJ/lexicon/tar.gz/${lexicon_ref}" /src/lexicon-src.tar.gz
@@ -55,7 +55,7 @@ RUN (cd /src/lexicon-* && poetry build)
 ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 RUN pip3 install --prefix=/dist /src/lexicon-*/dist/dns_lexicon-*-py3-none-any.whl
 
-ARG dehydrated_version=v0.7.1
+ARG dehydrated_version=master
 ENV dehydrated_version ${dehydrated_version}
 
 ADD "https://raw.githubusercontent.com/dehydrated-io/dehydrated/$dehydrated_version/dehydrated" /dist/bin/dehydrated
