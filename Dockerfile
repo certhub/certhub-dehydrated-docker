@@ -1,4 +1,4 @@
-ARG alpine_version=3.16.2
+ARG alpine_version=3.18.4
 
 FROM alpine:${alpine_version} as base
 RUN apk update && apk upgrade
@@ -44,7 +44,7 @@ RUN apk add --no-cache ca-certificates poetry python3 py3-beautifulsoup4 py3-cff
 
 RUN mkdir /src /dist /etc-dist
 
-ARG lexicon_ref=v3.11.4
+ARG lexicon_ref=v3.15.1
 ENV lexicon_ref ${lexicon_ref}
 
 ADD "https://codeload.github.com/AnalogJ/lexicon/tar.gz/${lexicon_ref}" /src/lexicon-src.tar.gz
@@ -55,7 +55,7 @@ RUN (cd /src/lexicon-* && poetry build)
 ENV PIP_DISABLE_PIP_VERSION_CHECK 1
 RUN pip3 install --prefix=/dist /src/lexicon-*/dist/dns_lexicon-*-py3-none-any.whl
 
-ARG dehydrated_version=v0.7.0
+ARG dehydrated_version=v0.7.1
 ENV dehydrated_version ${dehydrated_version}
 
 ADD "https://raw.githubusercontent.com/dehydrated-io/dehydrated/$dehydrated_version/dehydrated" /dist/bin/dehydrated
