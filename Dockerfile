@@ -44,7 +44,7 @@ RUN apk add --no-cache ca-certificates poetry python3 py3-beautifulsoup4 py3-cff
 
 RUN mkdir /src /dist /etc-dist
 
-ARG lexicon_ref=v3.15.1
+ARG lexicon_ref=v3.17.0
 ENV lexicon_ref ${lexicon_ref}
 
 ADD "https://codeload.github.com/AnalogJ/lexicon/tar.gz/${lexicon_ref}" /src/lexicon-src.tar.gz
