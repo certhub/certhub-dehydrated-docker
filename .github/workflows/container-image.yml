@@ -1,6 +1,8 @@
 ---
 name: Build and push container image
 
+on: workflow_dispatch
+
 # yamllint disable-line rule:truthy
 jobs:
   deploy:
