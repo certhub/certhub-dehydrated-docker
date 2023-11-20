@@ -25,4 +25,4 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Tag docker image
-        run: docker buildx imagetools create certhub/certhub:dehydrated-gh-build-${{ github.run_id }} --tag certhub/certhub:dehydrated-rolling
+        run: docker buildx imagetools create ${{ vars.IMAGE_NAME }}:${{ vars.IMAGE_VARIANT }}-gh-build-${{ github.run_id }} --tag ${{ vars.IMAGE_NAME }}:${{ vars.IMAGE_VARIANT }}-rolling

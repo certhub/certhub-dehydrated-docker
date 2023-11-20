@@ -1,7 +1,7 @@
 Official Certhub/Dehydrated Docker Image
 ========================================
 
-[![Build Status](https://travis-ci.org/certhub/certhub-dehydrated-docker.svg?branch=develop)](https://travis-ci.org/certhub/certhub-dehydrated-docker)
+[![Build Status](https://github.com/certhub/certhub-dehydrated-docker/actions/workflows/on-push-develop.yml/badge.svg?branch=develop)](https://github.com/certhub/certhub-dehydrated-docker/actions/workflows/on-push-develop.yml)
 
 
                             .oO'Oo.       .oO'Oo.
