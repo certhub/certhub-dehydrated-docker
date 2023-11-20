@@ -1,0 +1,38 @@
+version: "3.4"
+
+services:
+    sut:
+        command: /test/test-dehydrated.sh
+        environment:
+          CERTHUB_DEHYDRATED_CONFIG: >-
+            dehydrated.conf
+          CERTHUB_DEHYDRATED_ARGS: ""
+          CERTHUB_LEXICON_GLOBAL_ARGS: >-
+            --delegated ci.certhub.io
+          CERTHUB_LEXICON_PROVIDER: >-
+            digitalocean
+          LEXICON_DIGITALOCEAN_TOKEN: >-
+            ${PRIVATE_DIGITALOCEAN_TOKEN}
+          # Account setup via certhub-docker-entry script
+          # https://certhub.readthedocs.io/en/latest/certhub-docker-entry.8.html#environment-dehydrated
+          CERTHUB_DEHYDRATED_ACCOUNT_KEY: >-
+            ${PRIVATE_DEHYDRATED_ACCOUNT_KEY}
+          CERTHUB_DEHYDRATED_ACCOUNT_REGR: |
+            {
+              "key": {
+                "kty": "RSA",
+                "n": "tcfO2Pom3NFkCsr2iA8K0pufrHysBs_ozlo4giwGO1NGOlrwVXbEBLAp5mNE2UKfmBwQODLy86XNLQ4GrmCxU1nDg3js8vzcQThSy86pWqR5jyjR9yMjm-7zjxR8YJGQ7d8_KrVeV3yIwtx3aq4TzWv3kKSXc7pWLctMoCnqIG9BarY3pwHEL6vgRYbvn4tEHwpfbibW_F0iMwFhayB0M98-6R8zzOgJoaecq-9JW3Jdg84-CUtizyHgihaFVVQwdtwS56RDg5RfOua2ddtQ0HK8Xn8dPDnvQJjCS_nmqLGgWtD7pEqBeurDIznaQyk9xBnpZNyFBRVOxvQZgufRuQy_TDIQSL1UP29z_LYQlGZhhTQpXCnZAslkXZZx64YeHOUDJYvg2unIgKLJMnfhQ-uxPq2v6QsqjXqAruZ59hT2kU4YIMZrpENuZoEUVJH18Hnw1RXxiH7MvMZUIfk-JmEBy9u8H1NUZoTl46dDWr7lAy7uHKEUAWGT4Z_6NYDg7z3c4NhAHk_VXaNdtABwelr6aLRaLhsuMVujpVZ0XjEJXkX6DD3rJgo-J3VKZR__badn-bmIRDNA4Vx2mMYoN5WHaJgv_PgpClnCVMdPMUSGod8TxA5tHO3QRu4IeMu3vEvXcGVdnZWxJLzyTen39A9ZlcxrnN1RwC6UbceNe7E",
+                "e": "AQAB"
+              },
+              "createdAt": "2023-11-20T10:59:08.371887818Z",
+              "status": "valid"
+            }
+          CERTHUB_DEHYDRATED_ACCOUNT_ID: |
+            {"url":"https://acme-staging-v02.api.letsencrypt.org/acme/acct/126090684"}
+          CERTHUB_DEHYDRATED_ACCOUNT_SERVER: >-
+            https://acme-staging-v02.api.letsencrypt.org/directory
+
+    config:
+        command: /test/config-setup-dehydrated.sh
+        environment:
+          CONFIG_DEHYDRATED_CONF_PATH: dehydrated.conf

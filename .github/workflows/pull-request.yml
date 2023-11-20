@@ -1,0 +1,12 @@
+---
+name: Build and run integration tests on pull requests
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    uses: .github/workflows/container-image.yml
+
+  build:
+    uses: .github/workflows/integration-test.yml

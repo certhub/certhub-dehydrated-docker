@@ -1,0 +1,37 @@
+---
+name: Run integration test on container image
+
+on:
+  workflow_call:
+
+env:
+  IMAGE_NAME: certhub/certhub
+  IMAGE_VARIANT: dehydrated
+  IMAGE_BUILD_ID: "dehydrated-gh-build-${{ github.run_id }}"
+  PRIVATE_SSH_KEY: "${{ secrets.PRIVATE_SSH_KEY }}"
+  PRIVATE_DIGITALOCEAN_TOKEN: "${{ secrets.PRIVATE_DIGITALOCEAN_TOKEN }}"
+  PRIVATE_DEHYDRATED_ACCOUNT_KEY: "${{ secrets.PRIVATE_DEHYDRATED_ACCOUNT_KEY }}"
+  DOCKER_COMPOSE_ARGS: >
+    "
+    -f integration-test/docker-compose.yml
+    -f integration-test/docker-compose.github.yml
+    -f integration-test/docker-compose.test-dehydrated.github.yml
+    "
+
+# yamllint disable-line rule:truthy
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up integration test
+        run: docker-compose ${{ env.DOCKER_COMPOSE_ARGS }} build
+
+      - name: Run integration test
+        run: docker-compose ${{ env.DOCKER_COMPOSE_ARGS }} run sut
