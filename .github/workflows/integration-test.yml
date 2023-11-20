@@ -13,16 +13,16 @@ on:
         required: true
 
 env:
-  IMAGE_NAME: certhub/certhub
-  IMAGE_VARIANT: dehydrated
-  IMAGE_BUILD_ID: "dehydrated-gh-build-${{ github.run_id }}"
+  IMAGE_NAME: ${{ vars.IMAGE_NAME }}
+  IMAGE_VARIANT: ${{ vars.IMAGE_VARIANT }}
+  IMAGE_BUILD_ID: "${{ vars.IMAGE_VARIANT }}-gh-build-${{ github.run_id }}"
   PRIVATE_SSH_KEY: "${{ secrets.PRIVATE_SSH_KEY }}"
   PRIVATE_DIGITALOCEAN_TOKEN: "${{ secrets.PRIVATE_DIGITALOCEAN_TOKEN }}"
   PRIVATE_DEHYDRATED_ACCOUNT_KEY: "${{ secrets.PRIVATE_DEHYDRATED_ACCOUNT_KEY }}"
   DOCKER_COMPOSE_ARGS: >-
     -f integration-test/docker-compose.yml
     -f integration-test/docker-compose.github.yml
-    -f integration-test/docker-compose.test-dehydrated.github.yml
+    -f integration-test/docker-compose.test-${{ vars.IMAGE_VARIANT }}.github.yml
 
 jobs:
   integration-test:

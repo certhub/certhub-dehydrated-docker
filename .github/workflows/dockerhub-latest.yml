@@ -35,8 +35,8 @@ jobs:
 
       - name: Tag docker image
         run: >-
-          docker buildx imagetools create certhub/certhub:dehydrated-gh-build-${{ github.run_id }}
-          --tag certhub/certhub:dehydrated-${{ env.VERSION_PATCH}}
-          --tag certhub/certhub:dehydrated-${{ env.VERSION_MINOR}}
-          --tag certhub/certhub:dehydrated-${{ env.VERSION_MAJOR}}
-          --tag certhub/certhub:dehydrated
+          docker buildx imagetools create ${{ vars.IMAGE_NAME }}:${{ vars.IMAGE_VARIANT }}-gh-build-${{ github.run_id }}
+          --tag ${{ vars.IMAGE_NAME }}:${{ vars.IMAGE_VARIANT }}-${{ env.VERSION_PATCH}}
+          --tag ${{ vars.IMAGE_NAME }}:${{ vars.IMAGE_VARIANT }}-${{ env.VERSION_MINOR}}
+          --tag ${{ vars.IMAGE_NAME }}:${{ vars.IMAGE_VARIANT }}-${{ env.VERSION_MAJOR}}
+          --tag ${{ vars.IMAGE_NAME }}:${{ vars.IMAGE_VARIANT }}
