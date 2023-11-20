@@ -1,10 +1,10 @@
 ---
 name: Build and push container image
 
+# yamllint disable-line rule:truthy
 on:
   workflow_call:
 
-# yamllint disable-line rule:truthy
 jobs:
   deploy:
     runs-on: ubuntu-latest

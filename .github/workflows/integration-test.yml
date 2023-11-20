@@ -1,6 +1,7 @@
 ---
 name: Run integration test on container image
 
+# yamllint disable-line rule:truthy
 on:
   workflow_call:
 
@@ -18,7 +19,6 @@ env:
     -f integration-test/docker-compose.test-dehydrated.github.yml
     "
 
-# yamllint disable-line rule:truthy
 jobs:
   deploy:
     runs-on: ubuntu-latest

@@ -1,6 +1,7 @@
 ---
 name: Build and run integration tests on pull requests
 
+# yamllint disable-line rule:truthy
 on:
   pull_request:
 
@@ -8,5 +9,5 @@ jobs:
   build:
     uses: .github/workflows/container-image.yml
 
-  build:
+  test:
     uses: .github/workflows/integration-test.yml
