@@ -41,5 +41,5 @@ jobs:
           platforms: linux/arm64,linux/amd64
           tags: "certhub/certhub:dehydrated-gh-build-${{ github.run_id }}"
           build-args: |
-            build_log_label=GH Build #${{ github.run_id }}
+            build_log_label=GH Build #${{ github.run_number }}
             build_log_url=${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
