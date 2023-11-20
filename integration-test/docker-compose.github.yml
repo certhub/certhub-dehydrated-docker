@@ -6,7 +6,7 @@ services:
           ${IMAGE_NAME}:${IMAGE_BUILD_ID}
         environment:
           CERTHUB_MESSAGE_SUBJECT_ACTION: >-
-            Issue/renew by GH Build [#${GITHUB_RUN_ID}](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID})
+            Issue/renew by GH Build [#${GITHUB_RUN_NUMBER}](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID})
           CERTHUB_CERT_PATH: >-
             {WORKDIR}/${IMAGE_VARIANT}-docker-test.fullchain.pem
           CERTHUB_CSR_PATH: >-
