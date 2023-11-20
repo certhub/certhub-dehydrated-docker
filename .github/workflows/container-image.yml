@@ -4,6 +4,11 @@ name: Build and push container image
 # yamllint disable-line rule:truthy
 on:
   workflow_call:
+    secrets:
+      DOCKERHUB_USERNAME:
+        required: true
+      DOCKERHUB_TOKEN:
+        required: true
 
 jobs:
   deploy:

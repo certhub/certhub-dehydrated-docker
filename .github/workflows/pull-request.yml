@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     uses: ./.github/workflows/container-image.yml
+    secrets: inherit
 
   test:
+    needs: build
     uses: ./.github/workflows/integration-test.yml
+    secrets: inherit

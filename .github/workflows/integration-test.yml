@@ -4,6 +4,13 @@ name: Run integration test on container image
 # yamllint disable-line rule:truthy
 on:
   workflow_call:
+    secrets:
+      PRIVATE_SSH_KEY:
+        required: true
+      PRIVATE_DIGITALOCEAN_TOKEN:
+        required: true
+      PRIVATE_DEHYDRATED_ACCOUNT_KEY:
+        required: true
 
 env:
   IMAGE_NAME: certhub/certhub
