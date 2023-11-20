@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    uses: .github/workflows/container-image.yml
+    uses: ./.github/workflows/container-image.yml
 
   test:
-    uses: .github/workflows/integration-test.yml
+    uses: ./.github/workflows/integration-test.yml
