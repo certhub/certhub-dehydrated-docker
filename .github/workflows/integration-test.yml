@@ -19,7 +19,7 @@ env:
   PRIVATE_SSH_KEY: "${{ secrets.PRIVATE_SSH_KEY }}"
   PRIVATE_DIGITALOCEAN_TOKEN: "${{ secrets.PRIVATE_DIGITALOCEAN_TOKEN }}"
   PRIVATE_DEHYDRATED_ACCOUNT_KEY: "${{ secrets.PRIVATE_DEHYDRATED_ACCOUNT_KEY }}"
-  DOCKER_COMPOSE_ARGS: >
+  DOCKER_COMPOSE_ARGS: >-
     -f integration-test/docker-compose.yml
     -f integration-test/docker-compose.github.yml
     -f integration-test/docker-compose.test-dehydrated.github.yml
