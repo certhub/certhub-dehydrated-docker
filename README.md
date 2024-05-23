@@ -26,7 +26,7 @@ Manifest
 --------
 
 * alpine: 3.18.6
-* certhub: v1.0.0-beta9
+* certhub: v1.2.0
 * dehydrated: v0.7.1
 * dns-lexicon: v3.17.0
 * git-gau: v1.3.0
