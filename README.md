@@ -29,4 +29,4 @@ Manifest
 * certhub: v1.2.0
 * dehydrated: v0.7.1
 * dns-lexicon: v3.17.0
-* git-gau: v1.3.0
+* git-gau: v1.4.0
