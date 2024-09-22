@@ -27,7 +27,7 @@ Manifest
 --------
 
 * alpine: edge
-* certhub: develop
+* certhub: main
 * dehydrated: master
 * dns-lexicon: master
 * git-gau: develop
