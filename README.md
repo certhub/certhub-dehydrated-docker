@@ -1,5 +1,5 @@
-Official Certhub/Dehydrated Docker Image
-========================================
+Official Certhub/Dehydrated Docker Image (DEPRECATED)
+=====================================================
 
 [![Build Status](https://github.com/certhub/certhub-dehydrated-docker/actions/workflows/on-push-latest.yml/badge.svg?branch=latest)](https://github.com/certhub/certhub-dehydrated-docker/actions/workflows/on-push-latest.yml)
 
@@ -21,6 +21,10 @@ Official Certhub/Dehydrated Docker Image
           | (__ |  __/| |   | |_ | | | || |_| || |_) | _ | || (_) |
            \___| \___||_|    \__||_| |_| \__,_||_.__/ (_)|_| \___/
 
+Warning
+-------
+
+certhub-dehydrated-run is deprecated, please switch to another ACME client.
 
 Manifest
 --------
