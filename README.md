@@ -29,7 +29,7 @@ certhub-dehydrated-run is deprecated, please switch to another ACME client.
 Manifest
 --------
 
-* alpine: 3.20.3
+* alpine: 3.19.4
 * certhub: v1.2.0
 * dehydrated: v0.7.1
 * dns-lexicon: v3.18.0
